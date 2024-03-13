@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormState } from "react-dom";
-import { createTopic } from "@/actions";
+import { createPost } from "@/actions";
 import {
   Button,
   Input,
@@ -10,11 +10,14 @@ import {
   PopoverTrigger,
   Textarea,
 } from "@nextui-org/react";
-
 import { FormButton } from "@/components";
 
-export const CreateTopicForm = () => {
-  const [formState, action] = useFormState(createTopic, {
+type CreatePostFormProps = {
+  topicName: string;
+};
+
+export const CreatePostForm = ({ topicName }: CreatePostFormProps) => {
+  const [formState, action] = useFormState(createPost.bind(null, topicName), {
     errors: {},
   });
 
@@ -24,35 +27,35 @@ export const CreateTopicForm = () => {
     <Popover placement="left">
       <PopoverTrigger className="flex justify-center">
         <Button color="primary" className="mx-auto">
-          Create a Post
+          Create a post
         </Button>
       </PopoverTrigger>
       <PopoverContent>
         <form action={action}>
           <div className="flex flex-col gap-4 p-4 w-80">
-            <h3 className="text-lg">Create a Topic</h3>
+            <h3 className="text-lg">Create a Post</h3>
             <Input
-              name="name"
-              label="Name"
+              name="title"
+              label="Title"
               labelPlacement="outside"
-              placeholder="Name"
-              isInvalid={Boolean(errors?.name?.length)}
-              errorMessage={errors?.name?.join(", ")}
+              placeholder="Title"
+              isInvalid={Boolean(errors?.title?.length)}
+              errorMessage={errors?.title?.join(", ")}
             />
             <Textarea
-              name="description"
-              label="Description"
+              name="content"
+              label="Content"
               labelPlacement="outside"
-              placeholder="Describe your topic"
-              isInvalid={Boolean(errors?.description?.length)}
-              errorMessage={errors?.description?.join(", ")}
+              placeholder="Content"
+              isInvalid={Boolean(errors?.content?.length)}
+              errorMessage={errors?.content?.join(", ")}
             />
             {Boolean(errors?._form?.length) && (
               <p className="p-2 bg-red-200 border border-red-400">
                 {errors?._form?.join(", ")}
               </p>
             )}
-            <FormButton type="submit">Create Topic</FormButton>
+            <FormButton type="submit">Create Post</FormButton>
           </div>
         </form>
       </PopoverContent>

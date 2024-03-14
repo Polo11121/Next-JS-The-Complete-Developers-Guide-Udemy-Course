@@ -1,4 +1,4 @@
-import { TopicList } from "@/components";
+import { TopicsList } from "@/components";
 import { CreateTopicForm } from "@/components/forms";
 import { Divider } from "@nextui-org/react";
 
@@ -11,7 +11,7 @@ const HomePage = () => (
       <CreateTopicForm />
       <Divider className="my-2" />
       <h3 className="text-lg">Topics</h3>
-      <TopicList />
+      <TopicsList />
     </div>
   </div>
 );

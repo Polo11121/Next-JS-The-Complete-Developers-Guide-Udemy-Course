@@ -1,6 +1,12 @@
 export { AuthenticationButtons } from "@/components/AuthenticationButtons";
+export { Comment } from "@/components/Comment";
+export { CommentsList } from "@/components/CommentsList";
 export { FormButton } from "@/components/FormButton";
+export { FormInput } from "@/components/FormInput";
+export { FormTextarea } from "@/components/FormTextarea";
 export { Header } from "@/components/Header";
+export { Post } from "@/components/Post";
+export { PostsList } from "@/components/PostsList";
 export { Profile } from "@/components/Profile";
-export { TopicList } from "@/components/TopicList";
+export { TopicsList } from "@/components/TopicsList";
 export { UserAuthentication } from "@/components/UserAuthentication";

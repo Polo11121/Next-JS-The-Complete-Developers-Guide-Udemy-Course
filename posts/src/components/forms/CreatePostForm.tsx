@@ -10,7 +10,7 @@ import {
   PopoverTrigger,
   Textarea,
 } from "@nextui-org/react";
-import { FormButton } from "@/components";
+import { FormButton, FormInput, FormTextarea } from "@/components";
 
 type CreatePostFormProps = {
   topicName: string;
@@ -34,7 +34,7 @@ export const CreatePostForm = ({ topicName }: CreatePostFormProps) => {
         <form action={action}>
           <div className="flex flex-col gap-4 p-4 w-80">
             <h3 className="text-lg">Create a Post</h3>
-            <Input
+            <FormInput
               name="title"
               label="Title"
               labelPlacement="outside"
@@ -42,7 +42,7 @@ export const CreatePostForm = ({ topicName }: CreatePostFormProps) => {
               isInvalid={Boolean(errors?.title?.length)}
               errorMessage={errors?.title?.join(", ")}
             />
-            <Textarea
+            <FormTextarea
               name="content"
               label="Content"
               labelPlacement="outside"

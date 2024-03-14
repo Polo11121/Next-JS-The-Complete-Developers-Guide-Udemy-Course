@@ -3,7 +3,7 @@ import { paths } from "@/lib/paths";
 import { Chip } from "@nextui-org/react";
 import Link from "next/link";
 
-export const TopicList = async () => {
+export const TopicsList = async () => {
   const topics = await db.topic.findMany();
 
   return (

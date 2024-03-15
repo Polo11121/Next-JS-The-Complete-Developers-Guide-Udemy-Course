@@ -1,16 +1,18 @@
 import { CreateCommentForm } from "@/components/forms";
-import { CommentWIthAuthor } from "@/db/queries";
+import { CommentWIthAuthor, fetchCommentsByPostId } from "@/db/queries";
 import Image from "next/image";
 
 interface CommentShowProps {
   comment: CommentWIthAuthor;
-  comments: CommentWIthAuthor[];
+  postId: string;
 }
 
-export const Comment = ({ comment, comments }: CommentShowProps) => {
+export const Comment = async ({ comment, postId }: CommentShowProps) => {
   if (!comment) {
     return null;
   }
+
+  const comments = await fetchCommentsByPostId(postId);
 
   const childrenComments = comments.filter((c) => c.parentId === comment.id);
 
@@ -37,7 +39,7 @@ export const Comment = ({ comment, comments }: CommentShowProps) => {
           <Comment
             key={childComment.id}
             comment={childComment}
-            comments={comments}
+            postId={postId}
           />
         ))}
       </div>

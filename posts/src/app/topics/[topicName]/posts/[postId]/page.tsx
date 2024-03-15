@@ -1,8 +1,8 @@
-import { CommentsList, Post } from "@/components";
+import { CommentsList, Post, PostSkeleton } from "@/components";
 import { CreateCommentForm } from "@/components/forms";
-import { fetchCommentsByPostId } from "@/db/queries";
 import { paths } from "@/lib/paths";
 import Link from "next/link";
+import { Suspense } from "react";
 
 type TopicPostsPageProps = {
   params: {
@@ -14,8 +14,6 @@ type TopicPostsPageProps = {
 const TopicPostsPage = ({ params }: TopicPostsPageProps) => {
   const { topicName, postId } = params;
 
-  const fetchHandler = () => fetchCommentsByPostId(postId);
-
   return (
     <div className="space-y-3">
       <Link
@@ -24,9 +22,11 @@ const TopicPostsPage = ({ params }: TopicPostsPageProps) => {
       >
         {"< "}Back to {topicName}
       </Link>
-      <Post postId={postId} />
+      <Suspense fallback={<PostSkeleton />}>
+        <Post postId={postId} />
+      </Suspense>
       <CreateCommentForm postId={postId} startOpen />
-      <CommentsList onFetchData={fetchHandler} />
+      <CommentsList postId={postId} />
     </div>
   );
 };

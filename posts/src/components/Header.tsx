@@ -1,13 +1,13 @@
-import { UserAuthentication } from "@/components";
+import { Search, UserAuthentication } from "@/components";
 import { paths } from "@/lib/paths";
 import {
-  Input,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
 } from "@nextui-org/react";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export const Header = () => (
   <Navbar className="shadow mb-6">
@@ -18,7 +18,9 @@ export const Header = () => (
     </NavbarBrand>
     <NavbarContent justify="center">
       <NavbarItem>
-        <Input />
+        <Suspense>
+          <Search />
+        </Suspense>
       </NavbarItem>
     </NavbarContent>
     <NavbarContent justify="end">
